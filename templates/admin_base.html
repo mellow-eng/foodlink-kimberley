@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Admin Dashboard | FoodLink Kimberley{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
+        header { background: #7c3aed; color: white; padding: 30px 40px; }
+        header h1 { margin: 0; font-size: 26px; }
+        header h2 { margin: 5px 0 0; font-weight: normal; color: #ede9fe; font-size: 16px; }
+        header p { margin: 5px 0 0; color: #ddd6fe; font-size: 14px; }
+        nav { background: #5b21b6; padding: 15px 40px; }
+        nav a { background: #7c3aed; color: white; text-decoration: none; padding: 10px 18px; border-radius: 4px; margin-right: 10px; display: inline-block; }
+        nav a:hover { background: #4c1d95; }
+        .content { padding: 30px 40px; }
+        .card-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+        .card { background: white; border-radius: 8px; padding: 20px 25px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); min-width: 160px; border-top: 3px solid #7c3aed; }
+        .card .label { color: #666; font-size: 14px; }
+        .card .value { font-size: 32px; font-weight: bold; margin-top: 5px; color: #5b21b6; }
+        h3 { margin-top: 0; color: #5b21b6; }
+        table { border-collapse: collapse; width: 100%; max-width: 900px; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #7c3aed; color: white; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FoodLink Kimberley</h1>
+        <h2>Administrator Dashboard</h2>
+        <p>Welcome, FoodLink Administrator!</p>
+    </header>
+    <nav>
+        <a href="{{ url_for('admin_dashboard') }}">Overview</a>
+        <a href="{{ url_for('admin_users') }}">Manage Users</a>
+        <a href="{{ url_for('admin_requests') }}">Food Requests</a>
+        <a href="{{ url_for('admin_donations') }}">Donations</a>
+        <a href="{{ url_for('admin_logout') }}">Logout</a>
+    </nav>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

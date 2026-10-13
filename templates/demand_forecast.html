@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Demand Forecast</h1>
+<p>Predicted food demand per category, based on historical requests.</p>
+
+{% if predictions %}
+<table>
+    <tr>
+        <th>Category</th><th>Predicted Next Demand</th><th>Method</th><th>Data Points Used</th>
+    </tr>
+    {% for category, info in predictions.items() %}
+    <tr>
+        <td>{{ category }}</td>
+        <td>{{ info.predicted_next_demand }}</td>
+        <td>{{ info.method }}</td>
+        <td>{{ info.data_points }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<p style="margin-top: 20px; color: #666;">Note: predictions improve in accuracy as more requests are submitted over time.</p>
+{% else %}
+<p>Not enough data yet to generate predictions.</p>
+{% endif %}
+
+<h2 style="margin-top: 40px;">Model Performance Evaluation</h2>
+<p>Tests the model against the most recent real request in each category to measure prediction accuracy.</p>
+{% if evaluation %}
+<table>
+    <tr>
+        <th>Category</th><th>Status</th><th>Actual</th><th>Predicted</th><th>Absolute Error</th><th>Trained On</th>
+    </tr>
+    {% for category, info in evaluation.items() %}
+    <tr>
+        <td>{{ category }}</td>
+        <td>{{ info.status }}</td>
+        <td>{{ info.actual if info.actual is defined else "-" }}</td>
+        <td>{{ info.predicted if info.predicted is defined else "-" }}</td>
+        <td>{{ info.absolute_error if info.absolute_error is defined else "-" }}</td>
+        <td>{{ info.trained_on if info.trained_on is defined else "-" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No evaluation data available yet.</p>
+{% endif %}
+{% endblock %}

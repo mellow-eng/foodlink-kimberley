@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form-container">
+    <h1>Register Available Food</h1>
+    <form method="POST" action="/resource/new">
+        <label>Food Category:</label>
+        <select name="food_category" required>
+            <option value="grains">Grains (rice, pasta, maize meal)</option>
+            <option value="produce">Fresh produce</option>
+            <option value="canned">Canned goods</option>
+            <option value="protein">Protein (meat, eggs, beans)</option>
+            <option value="dairy">Dairy</option>
+        </select>
+        <label>Quantity Available (units):</label>
+        <input type="number" name="quantity_available" min="1" required>
+        <label>Expiry Date:</label>
+        <input type="date" name="expiry_date">
+        <button type="submit">Add Resource</button>
+    </form>
+</div>
+{% endblock %}

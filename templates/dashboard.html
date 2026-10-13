@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block content %}
+<h1>Welcome, {{ current_user.full_name }}</h1>
+<p><a href="{{ url_for('submit_request') }}">+ Submit a new food request</a></p>
+
+<h2>Your Requests</h2>
+{% if my_requests %}
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Category</th>
+    <th>Quantity</th>
+    <th>Urgency</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+  {% for r in my_requests %}
+  <tr>
+    <td>#{{ r.id }}</td>
+    <td>{{ r.food_category }}</td>
+    <td>{{ r.quantity_needed }}</td>
+    <td>{{ r.urgency }}</td>
+    <td>{{ r.status }}</td>
+    <td>
+      <a href="{{ url_for('view_matches', request_id=r.id) }}">View Matches</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>You haven't submitted any requests yet.</p>
+{% endif %} {% endblock %}

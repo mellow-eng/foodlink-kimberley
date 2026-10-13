@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Matches for Request #{{ food_request.id }}</h1>
+<p>Category: <strong>{{ food_request.food_category }}</strong> |
+   Urgency: <strong>{{ food_request.urgency }}</strong> |
+   Quantity needed: <strong>{{ food_request.quantity_needed }}</strong></p>
+
+{% if matches %}
+<table>
+    <tr>
+        <th>Resource ID</th><th>Category</th><th>Quantity Available</th><th>Expiry</th><th>Match Score</th>
+    </tr>
+    {% for resource, score in matches %}
+    <tr class="{% if score >= 70 %}high-score{% endif %}">
+        <td>#{{ resource.id }}</td>
+        <td>{{ resource.food_category }}</td>
+        <td>{{ resource.quantity_available }}</td>
+        <td>{{ resource.expiry_date if resource.expiry_date else "N/A" }}</td>
+        <td>{{ score }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No available resources found.</p>
+{% endif %}
+{% endblock %}

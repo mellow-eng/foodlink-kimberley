@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Welcome to FoodLink Kimberley</h1>
+<p>Connecting food-insecure students with local donors in Kimberley.</p>
+{% if not current_user.is_authenticated %}
+<p>
+    <a href="{{ url_for('register') }}">Register as a Student</a> &nbsp;|&nbsp;
+    <a href="{{ url_for('donor_register') }}">Register as a Donor</a>
+</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login - FoodLink Kimberley</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #5b21b6; display: flex; align-items: center; justify-content: center; height: 100vh; }
+        .form-container { max-width: 350px; background: white; padding: 30px; border-radius: 8px; }
+        h1 { color: #7c3aed; font-size: 22px; }
+        label { display: block; margin-top: 15px; font-weight: bold; color: #333; }
+        input { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button { margin-top: 20px; padding: 10px 20px; background: #7c3aed; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #5b21b6; }
+        .error { color: #c0392b; margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Admin Login</h1>
+        {% if error %}<p class="error">{{ error }}</p>{% endif %}
+        <form method="POST" action="/admin/login">
+            <label>Username:</label>
+            <input type="text" name="username" required>
+            <label>Password:</label>
+            <input type="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>

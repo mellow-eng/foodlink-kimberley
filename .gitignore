@@ -1,0 +1,7 @@
+venv/
+foodlink_kimberley/
+__pycache__/
+instance/
+.vscode/
+.qodo/
+*.pyc

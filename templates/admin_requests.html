@@ -1,0 +1,24 @@
+{% extends "admin_base.html" %}
+{% block content %}
+<h3>All Food Requests</h3>
+<table>
+    <tr><th>ID</th><th>Student</th><th>Category</th><th>Quantity</th><th>Urgency</th><th>Status</th><th></th></tr>
+    {% for r in requests %}
+    <tr>
+        <td>{{ r.id }}</td>
+        <td>{{ r.student.full_name }}</td>
+        <td>{{ r.food_category }}</td>
+        <td>{{ r.quantity_needed }}</td>
+        <td>{{ r.urgency }}</td>
+        <td>{{ r.status }}</td>
+        <td>
+            {% if r.status == "pending" %}
+            <form method="POST" action="{{ url_for('admin_fulfill_request', request_id=r.id) }}" style="display:inline;">
+                <button type="submit" style="padding: 5px 12px; background: #2c7a2c; color: white; border: none; border-radius: 4px; cursor: pointer;">Mark Fulfilled</button>
+            </form>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

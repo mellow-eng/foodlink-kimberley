@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form-container">
+    <h1>Request Food Assistance</h1>
+    <form method="POST" action="/request/new">
+        <label>Food Category:</label>
+        <select name="food_category" required>
+            <option value="grains">Grains (rice, pasta, maize meal)</option>
+            <option value="produce">Fresh produce</option>
+            <option value="canned">Canned goods</option>
+            <option value="protein">Protein (meat, eggs, beans)</option>
+            <option value="dairy">Dairy</option>
+        </select>
+        <label>Quantity Needed (units):</label>
+        <input type="number" name="quantity_needed" min="1" required>
+        <label>Urgency:</label>
+        <select name="urgency" required>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+        <button type="submit">Submit Request</button>
+    </form>
+</div>
+{% endblock %}
